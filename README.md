@@ -1,11 +1,26 @@
 # TODO #
 ## Project Progress report ##
 Due: 29th March
-   https://docs.google.com/document/d/1mIA8qV2EQeAr4VKOwmC3IeD46YSah6A04VXjjjVzSdM/edit?usp=sharing
+   https://docs.google.com/document/d/1gkfHLm4XgHBaXhoGAYsy54z3is7D__AM22UlZpNlL_M/edit
    1. Phase 1 (Due: 12th April)
    
     ST_Contains
     ST_Within
+    
+# Installation ans project setup
+- IntelliJ version <2019 has plugin for scala
+- install scala plugin
+- Open project.
+- build.sbt must run for dependencies.
+    - problem with sbt? sbt symbol not found: Close, Delete .idea/ and reopen. 
+    - when reopened Not sure: Might have to setup sbt as build.....? 
+- Need to provide arguments as specified in the pdf/ readme
+- Build
+    - Might face problem with Dependency Jmockit is not found in classpath: add that in .sbt as follows and update the dependencies as prompted.
+    
+            "org.jmockit" % "jmockit" % "1.8" % Test
+
+
 # CSE512-Project-Phase2-Requirement
 
 ## Requirement
