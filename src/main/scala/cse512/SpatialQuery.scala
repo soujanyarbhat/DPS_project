@@ -3,13 +3,29 @@ package cse512
 import org.apache.spark.sql.SparkSession
 
 object SpatialQuery extends App{
+  def ST_Contains(queryRectangle:String, pointString:String):Boolean={
+    val point = pointString.split(',').map(_.toDouble)
+    val rectangle = queryRectangle.split(',').map(_.toDouble)
+
+    val high_bound_x = math.max(rectangle(0), rectangle(2))
+    val low_bound_x = math.min(rectangle(0), rectangle(2))
+    val high_bound_y = math.max(rectangle(1), rectangle(3))
+    val low_bound_y = math.min(rectangle(1), rectangle(3))
+
+    val point_x = point(0)
+    val point_y = point(1)
+
+    if (point_x > high_bound_x || point_x < low_bound_x || point_y > high_bound_y || point_y < low_bound_y) return false
+    else return true
+  }
+
   def runRangeQuery(spark: SparkSession, arg1: String, arg2: String): Long = {
 
     val pointDf = spark.read.format("com.databricks.spark.csv").option("delimiter","\t").option("header","false").load(arg1);
     pointDf.createOrReplaceTempView("point")
 
-    // YOU NEED TO FILL IN THIS USER DEFINED FUNCTION
-    spark.udf.register("ST_Contains",(queryRectangle:String, pointString:String)=>((true)))
+    // YOU NEED TO FILL IN THIS USER DEFINED FUNCTION - DONE
+    spark.udf.register("ST_Contains",(queryRectangle:String, pointString:String)=> ST_Contains(queryRectangle, pointString))
 
     val resultDf = spark.sql("select * from point where ST_Contains('"+arg2+"',point._c0)")
     resultDf.show()
@@ -25,8 +41,8 @@ object SpatialQuery extends App{
     val rectangleDf = spark.read.format("com.databricks.spark.csv").option("delimiter","\t").option("header","false").load(arg2);
     rectangleDf.createOrReplaceTempView("rectangle")
 
-    // YOU NEED TO FILL IN THIS USER DEFINED FUNCTION
-    spark.udf.register("ST_Contains",(queryRectangle:String, pointString:String)=>((true)))
+    // YOU NEED TO FILL IN THIS USER DEFINED FUNCTION - DONE
+    spark.udf.register("ST_Contains",(queryRectangle:String, pointString:String)=> ST_Contains(queryRectangle, pointString))
 
     val resultDf = spark.sql("select * from rectangle,point where ST_Contains(rectangle._c0,point._c0)")
     resultDf.show()
