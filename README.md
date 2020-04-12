@@ -8,13 +8,18 @@ Due: 29th March
     ST_Within
     
 # Installation ans project setup
+- The following blog explains how to seup the project on Intellij IDE
+  http://blog.miz.space/tutorial/2016/08/30/how-to-integrate-spark-intellij-idea-and-scala-install-setup-ubuntu-windows-mac/
 - IntelliJ version <2019 has plugin for scala
 - install scala plugin
 - Open project.
-- build.sbt must run for dependencies.
-    - problem with sbt? sbt symbol not found: Close, Delete .idea/ and reopen. 
-    - when reopened Not sure: Might have to setup sbt as build.....? 
+- build.sbt must resove the dependencies.
+    - problem with sbt? sbt symbol not found or Import spark errors: Close, Delete .idea/ and reopen. 
+    - when reopened: If IDE asks to reimprt sbt --> click yes 
 - Need to provide arguments as specified in the pdf/ readme
+    - Append .master("local[*]") after .config("spark.some.config.option", "some-value") to tell IDE the master IP is    
+      localhost.
+    - In some cases, you may need to go to "build.sbt" file and change % "provided" to % "compile" in order to debug your code       in IDE   
 - Build
     - Might face problem with Dependency Jmockit is not found in classpath: add that in .sbt as follows and update the dependencies as prompted.
     
