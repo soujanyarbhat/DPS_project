@@ -15,7 +15,7 @@ Due: 29th March
 - Open project.
 - build.sbt must resove the dependencies.
     - problem with sbt? sbt symbol not found or Import spark errors: Close, Delete .idea/ and reopen. 
-    - when reopened: If IDE asks to reimprt sbt --> click yes 
+    - when reopened: If IDE asks to reimport sbt --> click yes 
 - Need to provide arguments as specified in the pdf/ readme
     - Append .master("local[*]") after .config("spark.some.config.option", "some-value") to tell IDE the master IP is    
       localhost.
