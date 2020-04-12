@@ -7,7 +7,7 @@ Due: 29th March
     ST_Contains
     ST_Within
     
-# Installation ans project setup
+# Installation and Project Setup
 - The following blog explains how to seup the project on Intellij IDE
   http://blog.miz.space/tutorial/2016/08/30/how-to-integrate-spark-intellij-idea-and-scala-install-setup-ubuntu-windows-mac/
 - IntelliJ version <2019 has plugin for scala
